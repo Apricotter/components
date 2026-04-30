@@ -9,7 +9,7 @@ import { Tooltip } from "../../../atoms/indicators/Tooltip";
 import { ItemContainer } from "./Item";
 
 export interface FooterProps {
-    createServer: () => void;
+    createServer?: () => void;
     showDiscover?: boolean;
 }
 
@@ -21,17 +21,19 @@ export function ListFooter({ createServer, showDiscover }: FooterProps) {
 
     return (
         <>
-            <a onClick={createServer}>
-                <ItemContainer>
-                    <Tooltip content="Add a server" div right>
-                        <Avatar
-                            size={42}
-                            fallback={<Plus color="var(--accent)" size={24} />}
-                            interactive
-                        />
-                    </Tooltip>
-                </ItemContainer>
-            </a>
+            {createServer && (
+                <a onClick={createServer}>
+                    <ItemContainer>
+                        <Tooltip content="Add a server" div right>
+                            <Avatar
+                                size={42}
+                                fallback={<Plus color="var(--accent)" size={24} />}
+                                interactive
+                            />
+                        </Tooltip>
+                    </ItemContainer>
+                </a>
+            )}
             {showDiscover && (
                 <Link to="/discover">
                     <ItemContainer>
